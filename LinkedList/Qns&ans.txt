@@ -1,0 +1,663 @@
+//Linked list creation and display
+import java.util.*;
+class Node 
+{
+    int data;
+    Node add;
+    Node(int data)
+    {
+        this.data = data;
+        this.add  = null;
+    }
+}
+class LinkedList
+{
+    Node head = null;
+    void create(int num)
+    {
+        Node newnode = new Node(num);
+        if(head == null)
+        {
+            head = newnode;
+        }
+        else 
+        {
+            Node tptr = head;
+            while(tptr.add != null)
+            {
+                tptr = tptr.add;
+            }
+            tptr.add = newnode;
+        }
+    }
+    void display()
+    {
+        Node tptr = head;
+        while(tptr != null)
+        {
+            System.out.print(tptr.data+" ");
+            tptr = tptr.add;
+        }
+    }
+}
+public class PSNA 
+{
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int num;
+        while(true)
+        {
+            num = input.nextInt();
+            if(num == -1) break;
+            list.create(num);
+        }
+        list.display();
+        input.close();
+    }    
+}
+
+
+
+
+
+
+//Kadane's  using linked list
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int num)
+    {
+        data = num;
+        next = null;
+    }
+}
+class LinkedList 
+{
+    Node head = null;
+    Node tail = null;
+    void create(int num)
+    {
+        Node newnode = new Node(num);
+        if(head == null)
+            tail = head = newnode;
+        else 
+            tail = tail.next = newnode;
+    }
+    int maxsum()
+    {
+        int max = head.data;
+        int max_so_far = head.data;
+        Node tptr = head.next;
+        while(tptr != null)
+        {
+            max_so_far+=tptr.data;
+            max = Math.max(max,max_so_far);
+            if(max_so_far < 0) max_so_far = 0;
+            tptr = tptr.next;
+        }
+        return max;
+    }
+}
+public class PSNA 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int num;
+        while(true)
+        {
+            num = input.nextInt();
+            if(num == -1) break;
+            list.create(num);
+        }
+        int res = list.maxsum();
+        System.out.print(res);
+        input.close();
+    }
+}
+
+
+
+
+
+
+
+
+//Sorted insertion (begin,mid,end >  insertion)
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int num)
+    {
+        data = num;
+        next = null;
+    }
+}
+class LinkedList 
+{
+    Node head = null;
+    void create(int num)
+    {
+        Node newnode = new Node(num);
+        if(head == null)
+            head = newnode;
+        else 
+        {
+            Node tptr = null;
+            Node temp = null;
+            for(tptr = head ; tptr != null && num > tptr.data ; temp = tptr , tptr = tptr.next);
+            if(tptr == head)
+            {
+                newnode.next = head;
+                head = newnode;
+            }
+            else if(tptr == null)
+            {
+                temp.next = newnode;
+            }
+            else 
+            {
+                temp.next = newnode;
+                newnode.next = tptr;
+            }
+        }
+    }
+    void display()
+    {
+        Node tptr = head;
+        while(tptr != null)
+        {
+            System.out.print(tptr.data+" ");
+            tptr = tptr.next;
+        }
+    }
+}
+public class PSNA 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int num;
+        while(true)
+        {
+            num = input.nextInt();
+            if(num == -1) break;
+            list.create(num);
+        }
+        list.display();
+        input.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Deletion based on index
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int num)
+    {
+        data = num;
+        next = null;
+    }
+}
+class LinkedList 
+{
+    Node head = null;
+    void create(int num)
+    {
+        Node newnode = new Node(num);
+        if(head == null)
+            head = newnode;
+        else 
+        {
+            Node tptr = null;
+            Node temp = null;
+            for(tptr = head ; tptr != null && num > tptr.data ; temp = tptr , tptr = tptr.next);
+            if(tptr == head)
+            {
+                newnode.next = head;
+                head = newnode;
+            }
+            else if(tptr == null)
+            {
+                temp.next = newnode;
+            }
+            else 
+            {
+                temp.next = newnode;
+                newnode.next = tptr;
+            }
+        }
+    }
+    void delete(int index)
+    {
+        if(head == null)
+        {
+            System.out.println("List is Empty");
+            return;
+        }
+        if(index == 0)
+        {
+            head = head.next;
+            return;
+        }
+        int ind = 0;
+        Node tptr = head;
+        while(tptr != null && ind < index-1)
+        {
+            tptr = tptr.next;
+            ind++;
+        }
+        if(tptr == null)
+        {
+            System.out.println("Out of the boundary");
+            return;
+        }
+        tptr.next = tptr.next.next;
+    }
+    void display()
+    {
+        Node tptr = head;
+        while(tptr != null)
+        {
+            System.out.print(tptr.data+" ");
+            tptr = tptr.next;
+        }
+    }
+}
+public class PSNA 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int num;
+        while(true)
+        {
+            num = input.nextInt();
+            if(num == -1) break;
+            list.create(num);
+        }
+        list.display();
+        int index = input.nextInt();
+        list.delete(index);
+        System.out.println();
+        list.display();
+        input.close();
+    }
+}
+
+
+
+
+//Singly circular linked list
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int num)
+    {
+        data = num;
+        next = null;
+    }
+}
+class LinkedList 
+{
+    Node head = null;
+    void create(int num)
+    {
+        Node newnode = new Node(num);
+        if(head == null)
+        {
+            head = newnode;
+            newnode.next = head;
+        }
+        else 
+        {
+            Node tptr = head;
+            while(tptr.next != head)
+            {
+                tptr = tptr.next;
+            }
+            tptr.next = newnode;
+            newnode.next = head;
+        }
+    }
+    void display()
+    {
+        Node tptr = head;
+        do
+        {
+            System.out.print(tptr.data+" ");
+            tptr = tptr.next;
+        }while(tptr != head);
+    }
+}
+public class PSNA 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int num;
+        while(true)
+        {
+            num = input.nextInt();
+            if(num == -1) break;
+            list.create(num);
+        }
+        list.display();
+        input.close();
+    }
+}
+
+
+
+
+
+
+Lucky Person
+
+Given that N person (numbered 1 to N) standing as to form a circle. They all have the gun in their hand which is pointed to their leftmost Partner. 
+
+Every one shoots such that 1 shoot 2, 3 shoots 4, 5 shoots 6 …. (N-1)the shoot N (if N is even otherwise N shoots 1). 
+Again on the second iteration, they shoot the rest of remains as above mentioned logic (now for n as even, 1 will shoot to 3, 5 will shoot to 7 and so on). 
+
+The task is to find which person is the luckiest(didn’t die)?
+
+
+
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int num)
+    {
+        data = num;
+        next = null;
+    }
+}
+public class PSNA 
+{
+
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int N = input.nextInt();
+        Node head = null;
+        Node newnode = null;
+        for(int val = 1 ; val <= N ; val++)
+        {
+            newnode = new Node(val);
+            if(head == null) head = newnode;
+            else 
+            {
+                Node tptr = head;
+                while(tptr.next != null)
+                {
+                    tptr = tptr.next;
+                }
+                tptr.next = newnode;
+            }
+        }
+        newnode.next = head;
+        Node prev = head;
+        Node curr = head.next;
+        while(curr != curr.next)
+        {
+            prev.next = curr.next;
+            curr = curr.next.next;
+            prev = prev.next;
+        }
+        System.out.print(curr.data);
+        input.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.*;
+public class PSNA 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int N = input.nextInt();
+        int power = (1 << (int)(Math.log10(N) / Math.log10(2)));
+        System.out.println((N-power)*2+1);
+        input.close();
+    }
+}
+
+
+// 68 -> 64 65 66 67 68
+//        1  1  1  1  1 
+//           2  2  2  2
+//              2  2  2
+//                 2  2
+//                    2
+
+
+
+
+// 45  
+// 32 33 34 35 36 37 38 39 40 41 42 43 44 45
+// 1  3  5  7  9  11 13 15 17 19 21 23 25 27 
+
+
+
+
+
+
+
+//reverse using recursion
+import java.util.*;
+class Node 
+{
+    int data;
+    Node add;
+    Node(int data)
+    {
+        this.data = data;
+        this.add  = null;
+    }
+}
+class LinkedList
+{
+    Node head = null;
+    void create(int num)
+    {
+        Node newnode = new Node(num);
+        if(head == null)
+        {
+            head = newnode;
+        }
+        else 
+        {
+            Node tptr = head;
+            while(tptr.add != null)
+            {
+                tptr = tptr.add;
+            }
+            tptr.add = newnode;
+        }
+    }
+    void display(Node tptr)
+    {
+        if(tptr != null)
+        {
+            System.out.print(tptr.data+" ");
+            display(tptr.add);
+        }
+    }
+    void reverse_helper(Node tptr,Node prev)
+    {
+        if(tptr == null)
+        {
+            head = prev;
+        }
+        else 
+        {
+            reverse_helper(tptr.add, tptr);
+            tptr.add = prev;
+        }
+    }
+    void reverse()
+    {
+        reverse_helper(head,null);
+    }
+}
+public class PSNA 
+{
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int num;
+        while(true)
+        {
+            num = input.nextInt();
+            if(num == -1) break;
+            list.create(num);
+        }
+        list.display(list.head);
+        list.reverse();
+        System.out.println();
+        list.display(list.head);
+        input.close();
+    }    
+}
+
+
+
+
+
+
+
+//Reverse using sliding pointer approach
+import java.util.*;
+class Node 
+{
+    int data;
+    Node add;
+    Node(int data)
+    {
+        this.data = data;
+        this.add  = null;
+    }
+}
+class LinkedList
+{
+    Node head = null;
+    void create(int num)
+    {
+        Node newnode = new Node(num);
+        if(head == null)
+        {
+            head = newnode;
+        }
+        else 
+        {
+            Node tptr = head;
+            while(tptr.add != null)
+            {
+                tptr = tptr.add;
+            }
+            tptr.add = newnode;
+        }
+    }
+    void display(Node tptr)
+    {
+        if(tptr != null)
+        {
+            System.out.print(tptr.data+" ");
+            display(tptr.add);
+        }
+    }
+    void reverse()
+    {
+        Node prev = null;
+        Node curr = null;
+        Node next = head;
+        while(next != null)
+        {
+            prev = curr;
+            curr=  next;
+            next = next.add;
+            curr.add = prev;
+        }
+        head = curr;
+    }
+}
+public class PSNA 
+{
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int num;
+        while(true)
+        {
+            num = input.nextInt();
+            if(num == -1) break;
+            list.create(num);
+        }
+        list.display(list.head);
+        list.reverse();
+        System.out.println();
+        list.display(list.head);
+        input.close();
+    }    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
