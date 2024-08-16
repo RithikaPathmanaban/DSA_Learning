@@ -25,5 +25,6 @@ public class MovingZeroes {
         for(int ind = 0; ind < N; ind++){
             System.out.print(arr[ind] + " ");
         }
+        sc.close();
     }
 }

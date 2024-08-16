@@ -12,5 +12,6 @@ class OddTimesNo{
             ref ^= arr[ind];
         }
         System.out.println(ref);
+        sc.close();
     }
 }

@@ -1,18 +1,26 @@
 import java.util.Scanner;
-
-public class UniqueNo {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int arr[] = new int[N];
-        for(int i = 0;i<N;i++){
-            arr[i] = sc.nextInt();
+public class UniqueNo
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int N = input.nextInt();
+        int[] arr = new int[N];
+        for(int ind = 0 ; ind < N ; ind++)
+        {
+            arr[ind] = input.nextInt();
         }
-        int unique = 0;
-        for (int num : arr) {
-            unique ^= num;
+        int ref = 0;
+        for(int ind = 0 ; ind < N ; ind++)
+        {
+            ref ^= arr[ind];
         }
-        System.out.println((unique!=0)? "The unique element is: " + unique : "No uniques elements");
+        System.out.println(ref);
+        input.close();
     }
-
 }
+
+
+//             a                   b
+// 1 2 3 4 5 6 7 2 3 3 3 4 4 5 6 6 7 
+// 1 2 3 4 5 6 7
