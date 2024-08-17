@@ -10,13 +10,6 @@
 // The above procedure will continue till the Nth turn in which you alter the state of the door numbered N. The task is to find the number of open doors at the end of the procedure.
 
 
-
-
-
-
-
-
-
 import java.util.*;
 public class Alley 
 {
